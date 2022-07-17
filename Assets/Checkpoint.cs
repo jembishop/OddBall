@@ -36,7 +36,6 @@ public class Checkpoint : MonoBehaviour {
             s.color = c2;
             if (PlayerPrefs.GetInt("CheckpointID") < id){
                 control.keys = new List<Key>() { };
-                print("hello");
                 control.keys2 = new List<Key2>() { };
                 control.keys3 = new List<key3>() { };
             }

@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class Resume : MonoBehaviour {
 	public Text t;
-	public Image i;
+    public Canvas can;
+	Image i;
     SoundManager s;
     private void Start()
     {
+        i = can.GetComponent<Image>();
         s = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
     public void Resum(){

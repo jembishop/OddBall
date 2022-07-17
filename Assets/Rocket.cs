@@ -5,11 +5,13 @@ using UnityEngine.UI;
 public class Rocket : MonoBehaviour {
     public float speed;
     public Camera c;
-    public Text t;
+    Text t;
     public GameObject b;
-    public Image i;
+    Image i;
     // Use this for initialization
     void Start () {
+        i = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Image>();
+        t = GameObject.FindGameObjectWithTag("InfoText").GetComponent<Text>();
         c = Camera.main;
         if (PlayerPrefs.GetInt("RocketEnabled")==1) {
             Destroy(gameObject);
@@ -39,7 +41,6 @@ public class Rocket : MonoBehaviour {
         i.enabled = true;
         Time.timeScale = 0;
         b.SetActive(true);
-
         t.text = "You got the rocket boosters! Press 'a' and 'd' or 'left' and 'right' to move!";
 
     }

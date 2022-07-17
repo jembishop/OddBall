@@ -123,8 +123,8 @@ public class Control : MonoBehaviour {
         bombrad = bomb.GetComponent<CircleCollider2D>().radius-reduce;
         string checkpoint = PlayerPrefs.GetString("Checkpoint");
         s1 = bombsprite.GetComponent<SpriteRenderer>();
-        PlayerPrefs.SetInt("Deaths", PlayerPrefs.GetInt("Deaths") -1);
-        GameOver();
+        PlayerPrefs.SetInt("Deaths", PlayerPrefs.GetInt("Deaths"));
+        GameOver(false);
         
     }
 
@@ -164,9 +164,12 @@ public class Control : MonoBehaviour {
         rb2.velocity = vel2;
     }
    
-    public void GameOver() {
+    public void GameOver(bool deathInc) {
 
-        PlayerPrefs.SetInt("Deaths", PlayerPrefs.GetInt("Deaths")+1);
+        if (deathInc) {
+            PlayerPrefs.SetInt("Deaths", PlayerPrefs.GetInt("Deaths")+1);
+        }
+
         if (timestopnow)
             {
 
@@ -201,7 +204,13 @@ public class Control : MonoBehaviour {
             }
         }
       
-            rb.position = rb2.position = GameObject.Find(PlayerPrefs.GetString("Checkpoint")).GetComponent<Rigidbody2D>().position;
+            var cp = PlayerPrefs.GetString("Checkpoint");
+            var cppo = GameObject.Find(cp);
+            if (cppo == null) {
+                print(cp);
+                print("Checkpoint was not found!");
+            }
+            rb.position = rb2.position = cppo.GetComponent<Rigidbody2D>().position;
 
             rb.velocity = Vector2.zero;
             rb2.velocity = Vector2.zero;
@@ -273,12 +282,12 @@ public class Control : MonoBehaviour {
             
 
         }
-        if (Input.GetButtonDown("Teleport")&& teleportenabled)
-        {
-            rb.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            rb2.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            rb.velocity = Vector2.zero;
-        }
+        // if (Input.GetButtonDown("Teleport")&& teleportenabled)
+        // {
+        //     rb.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //     rb2.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //     rb.velocity = Vector2.zero;
+        // }
        
             rb.AddForce(x * dir);
             rb2.AddForce(-x * dir);
@@ -320,8 +329,8 @@ public class Control : MonoBehaviour {
     private void Update()
     {
         if (Input.GetButtonDown("Exit")){
+            GameOver(false);
             SceneManager.LoadScene("Main Menu");
-
         }
 
             if (Input.GetButtonDown("Grapple") & grappleenabled)

@@ -6,12 +6,14 @@ public class TimeStop : MonoBehaviour
 {
     public float speed;
     public Camera c;
-    public Text t;
+    Text t;
     public GameObject b;
-    public Image i;
+    Image i;
     // Use this for initialization
     void Start()
     {
+        i = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Image>();
+        t = GameObject.FindGameObjectWithTag("InfoText").GetComponent<Text>();
         c = Camera.main;
         if (PlayerPrefs.GetInt("TimestopEnabled") == 1)
         {
@@ -43,7 +45,7 @@ public class TimeStop : MonoBehaviour
         Time.timeScale = 0;
         b.SetActive(true);
 
-        t.text = "You got the stopwatch! Press 's' to slow down time.";
+        t.text = "You got the stopwatch! Press 'w' to slow down time.";
 
     }
 

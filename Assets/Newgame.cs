@@ -15,7 +15,7 @@ public class Newgame : MonoBehaviour {
         PlayerPrefs.SetInt("TeleportEnabled", 1);
         PlayerPrefs.SetInt("Jumplim", 0);
         PlayerPrefs.SetFloat("Time", 0f);
-        PlayerPrefs.SetString("Checkpoint", "CheckPoint(27)");
+        PlayerPrefs.SetString("Checkpoint", "CheckPoint (27)");
         PlayerPrefs.SetInt("Newgame", 1);
         PlayerPrefs.SetInt("Track", 0);
         SceneManager.LoadScene("Game Demo");

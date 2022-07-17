@@ -4,10 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 public class Crown : MonoBehaviour {
-    public Text t1;
+    Text t;
     public GameObject b;
-    public Image i;
+    Image i;
     public float speed;
+    void Start()
+    {
+        i = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Image>();
+        t = GameObject.FindGameObjectWithTag("InfoText").GetComponent<Text>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject ball = GameObject.FindGameObjectWithTag("Player");
@@ -31,15 +36,15 @@ public class Crown : MonoBehaviour {
         Time.timeScale = 0;
         b.SetActive(true);
         float time = PlayerPrefs.GetFloat("Time") + Time.timeSinceLevelLoad;
-        TimeSpan t = TimeSpan.FromSeconds(time);
+        TimeSpan ti = TimeSpan.FromSeconds(time);
         int deaths = PlayerPrefs.GetInt("Deaths");
         string answer = string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms",
-                        t.Hours,
-                        t.Minutes,
-                        t.Seconds,
-                        t.Milliseconds);
+                        ti.Hours,
+                        ti.Minutes,
+                        ti.Seconds,
+                        ti.Milliseconds);
 
-        t1.text = String.Format("Well Done! You beat the game in  {0}  with  {1}  deaths.",
+        t.text = String.Format("Well Done! You beat the game in  {0}  with  {1}  deaths.",
                                answer,deaths);
         PlayerPrefs.SetInt("Fresh", 0);
       

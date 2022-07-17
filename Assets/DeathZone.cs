@@ -43,7 +43,7 @@ public class DeathZone : MonoBehaviour {
     {
       
         if (collision.gameObject.tag == "Player" && active) {
-            control.GameOver();
+            control.GameOver(true);
         }
     }
 }

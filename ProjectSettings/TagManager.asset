@@ -11,6 +11,8 @@ TagManager:
   - CheckPoint
   - Floors
   - Bullet
+  - Canvas
+  - InfoText
   layers:
   - Default
   - TransparentFX

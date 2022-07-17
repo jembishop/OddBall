@@ -17,7 +17,7 @@ public class ElectricScript : MonoBehaviour {
     {
         if (collision.gameObject == ball || collision.gameObject == arm)
         {
-            control.GameOver();
+            control.GameOver(true);
         }
     }
 

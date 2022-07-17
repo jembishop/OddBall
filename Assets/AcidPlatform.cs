@@ -17,7 +17,7 @@ public class AcidPlatform : MonoBehaviour {
     {
         if (collision.gameObject == ball)
         {
-            control.GameOver();
+            control.GameOver(true);
         }
     }
 
